@@ -115,6 +115,7 @@ class _HomepageState extends State<Homepage> {
                                 show = false;
                                 congrats = false;
                               } else {
+                                print(number);
                                 if (_givenNumber == number) {
                                   congrats = true;
                                   show = true;
