@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -8,27 +7,27 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Homepage(title: 'Currency Convertor'),
     );
   }
 }
 
 class Homepage extends StatefulWidget {
-  Homepage({Key key, this.title}) : super(key: key);
-  @override
+  const Homepage({Key key, this.title}) : super(key: key);
   final String title;
 
+  @override
   _HomepageState createState() => _HomepageState();
 }
 
 class _HomepageState extends State<Homepage> {
-  @override
   String money = '';
   String error = '';
   double currency;
   bool show = false;
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -51,18 +50,18 @@ class _HomepageState extends State<Homepage> {
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     errorText: error,
-                    hintText: "Enter the amount in EUR",
+                    hintText: 'Enter the amount in EUR',
                   ),
                 ),
                 RaisedButton(
-                  child: Text('Convert'),
+                  child: const Text('Convert'),
                   onPressed: () {
                     setState(() {
-                      if (money.length == 0) {
+                      if (money.isEmpty) {
                         error = 'Please enter a number';
                         show = false;
                       } else {
-                        if (money.length > 0 && !money.contains('..')) {
+                        if (money.isNotEmpty && !money.contains('..')) {
                           currency = 4.83 * double.parse(money);
                           currency = num.parse(currency.toStringAsFixed(2));
                           show = true;
@@ -77,7 +76,7 @@ class _HomepageState extends State<Homepage> {
                 Visibility(
                   child: Text(
                     currency.toString() + ' RON',
-                    style: TextStyle(fontSize: 30),
+                    style: const TextStyle(fontSize: 30),
                   ),
                   visible: show,
                 ),
