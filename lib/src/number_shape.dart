@@ -117,6 +117,9 @@ class _HomepageState extends State<Homepage> {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(20.0))
+                              ),
                               backgroundColor: Color.fromRGBO(204, 255, 255, 0.8),
                               title: Text(
                                 _value,
