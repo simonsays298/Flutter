@@ -14,13 +14,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Audio Player'),
+      home: const MyHomePage(title: 'Audio Player'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
@@ -31,13 +31,15 @@ class _MyHomePageState extends State<MyHomePage> {
   AudioPlayer advancedPlayer;
 
   @override
+  // ignore: always_declare_return_types
   initState() {
     super.initState();
     loadMusic();
   }
 
+  // ignore: always_specify_types
   Future loadMusic() async {
-    advancedPlayer = await AudioCache().loop("music/song3.mp3");
+    advancedPlayer = await AudioCache().loop('music/song3.mp3');
   }
 
   @override

@@ -37,11 +37,11 @@ class _HomepageState extends State<Homepage> {
       ),
       body: GridView.builder(
         shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemCount: 20,
-        itemBuilder: (context, index) {
+        itemBuilder: (BuildContext context, int index) {
           return Container(
-            margin: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             alignment: Alignment.bottomCenter,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
@@ -58,9 +58,9 @@ class _HomepageState extends State<Homepage> {
                 ],
               ),
             ),
-            child: Center(
+            child: const Center(
               child: Text(
-                "Foreground Text",
+                'Foreground Text',
                 style: TextStyle(color: Colors.white, fontSize: 20.0),
               ),
             ),
