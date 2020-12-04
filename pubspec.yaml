@@ -12,6 +12,10 @@ dependencies:
   cupertino_icons: ^1.0.0
   http: ^0.12.2
   powers: ^0.1.0
+  audioplayers: ^0.17.0
+  file_picker: ^1.2.0
+  assets_audio_player: ^2.0.13+1
+
 
 dev_dependencies:
   flutter_test:
