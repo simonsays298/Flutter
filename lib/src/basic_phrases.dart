@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audio_cache.dart'; // This is needed for AudioPlayer.
 import 'package:audioplayers/audioplayers.dart';
 
 void main() {
@@ -25,8 +26,11 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   final TextEditingController myController = TextEditingController();
-  AudioPlayer advancedPlayer = AudioPlayer();
   String localFilePath;
+  static AudioPlayer advancedPlayer = AudioPlayer(); // This is needed for AudioPlayer.
+  static AudioCache audioCache = AudioCache(fixedPlayer: advancedPlayer); // This is needed for AudioPlayer.
+  // static AudioPlayer audioPlayer = AudioPlayer(); // This is needed for AudioPlayer.
+  // static String vTitle = 'My Audio app';
 
   @override
   Widget build(BuildContext context) {
@@ -40,28 +44,44 @@ class _HomepageState extends State<Homepage> {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemCount: 20,
         itemBuilder: (BuildContext context, int index) {
-          return Container(
-            margin: const EdgeInsets.all(10),
-            alignment: Alignment.bottomCenter,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.topLeft,
-                colors: <Color>[
-                  Colors.blue[50],
-                  Colors.blue[100],
-                  Colors.blue[200],
-                  Colors.blue[300],
-                  Colors.blue[400],
-                  Colors.blue[500],
-                ],
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                audioCache.play('translate_tts.mp3');
+              });
+            },
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              alignment: Alignment.bottomCenter,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.topLeft,
+                  colors: <Color>[
+                    Colors.blue[50],
+                    Colors.blue[100],
+                    Colors.blue[200],
+                    Colors.blue[300],
+                    Colors.blue[400],
+                    Colors.blue[500],
+                  ],
+                ),
               ),
-            ),
-            child: const Center(
-              child: Text(
-                'Foreground Text',
-                style: TextStyle(color: Colors.white, fontSize: 20.0),
+              child: Center(
+                child: Column(
+                  children: <Widget>[
+                    const Text(
+                      'Foreground Text',
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    ),
+                    RaisedButton(
+                      onPressed: () {
+                        // This is needed for AudioPlayer.
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           );
