@@ -13,11 +13,6 @@ dependencies:
   http: ^0.12.2
   powers: ^0.1.0
   audioplayers: ^0.17.0
-  file_picker: ^1.2.0
-  assets_audio_player: ^2.0.13+1
-  provider: ^4.3.2+2
-  video_player: ^1.0.1
-  audioplayer: ^0.5.2
 
 
 dev_dependencies:

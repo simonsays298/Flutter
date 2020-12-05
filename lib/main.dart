@@ -1,4 +1,4 @@
-import 'src/02.dart' as app;
+import 'src/basic_phrases.dart' as app;
 
 void main() {
   app.main();

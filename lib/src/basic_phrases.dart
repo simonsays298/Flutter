@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audio_cache.dart'; // This is needed for AudioPlayer.
-import 'package:audioplayers/audioplayers.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,8 +26,8 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   final TextEditingController myController = TextEditingController();
   String localFilePath;
-  static AudioPlayer advancedPlayer = AudioPlayer(); // This is needed for AudioPlayer.
-  static AudioCache audioCache = AudioCache(fixedPlayer: advancedPlayer); // This is needed for AudioPlayer.
+  static AudioCache audioCache = AudioCache();
+
   // static AudioPlayer audioPlayer = AudioPlayer(); // This is needed for AudioPlayer.
   // static String vTitle = 'My Audio app';
 
