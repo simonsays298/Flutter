@@ -23,5 +23,14 @@ flutter:
 
   uses-material-design: true
   assets:
-    - assets/translate_tts.mp3
+    - assets/Cute.mp3
+    - assets/Kawaii.mp3
+    - assets/Hello.mp3
+    - assets/Konnichiwa.mp3
+    - assets/Goodbye.mp3
+    - assets/Sayounara.mp3
+    - assets/Interesting.mp3
+    - assets/Omoshiroi.mp3
+    - assets/Really.mp3
+    - assets/Hontouni.mp3
 

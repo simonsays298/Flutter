@@ -26,7 +26,31 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   final TextEditingController myController = TextEditingController();
   String localFilePath;
-  static AudioCache audioCache = AudioCache();
+  AudioCache audioCache = AudioCache();
+
+  List<String> audio = <String>[
+    'Cute',
+    'Kawaii',
+    'Hello',
+    'Konnichiwa',
+    'Goodbye',
+    'Sayounara',
+    'Interesting',
+    'Omoshiroi',
+    'Really',
+    'Hontouni'
+  ];
+  List<String> translate = <String>['',
+    'かわいい',
+    '',
+    'こんにちは',
+    '',
+    'さようなら',
+    '',
+    'おもしろい',
+    '',
+    'ほんとうに'
+  ];
 
   // static AudioPlayer audioPlayer = AudioPlayer(); // This is needed for AudioPlayer.
   // static String vTitle = 'My Audio app';
@@ -41,91 +65,58 @@ class _HomepageState extends State<Homepage> {
       body: GridView.builder(
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemCount: 20,
+        itemCount: 10,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
               setState(() {
-                audioCache.play('translate_tts.mp3');
+                audioCache.play(audio[index] + '.mp3');
               });
             },
-            child: Container(
-              margin: const EdgeInsets.all(10),
-              alignment: Alignment.bottomCenter,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.topLeft,
-                  colors: <Color>[
-                    Colors.blue[50],
-                    Colors.blue[100],
-                    Colors.blue[200],
-                    Colors.blue[300],
-                    Colors.blue[400],
-                    Colors.blue[500],
-                  ],
-                ),
-              ),
-              child: Center(
-                child: Column(
-                  children: <Widget>[
-                    const Text(
-                      'Foreground Text',
-                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  alignment: Alignment.bottomCenter,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.topLeft,
+                      colors: <Color>[
+                        Colors.blue[50],
+                        Colors.blue[100],
+                        Colors.blue[200],
+                        Colors.blue[300],
+                        Colors.blue[400],
+                        Colors.blue[500],
+                      ],
                     ),
-                    RaisedButton(
-                      onPressed: () {
-                        // This is needed for AudioPlayer.
-                      },
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                // Text(audioMap[index~/2].keys.first),
+                Center(
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: Text(
+                          audio[index],
+                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Text(
+                        translate[index],
+                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           );
         },
       ),
-      // body:GridView.count(
-      //   scrollDirection: Axis.vertical,
-      //   crossAxisCount: 2,
-      //   // ignore: always_specify_types
-      //   shrinkWrap: true,
-      //   primary: true,
-      //   // ignore: always_specify_types
-      //   children: List.generate(10, (int index) {
-      //     return Container(
-      //       margin: EdgeInsets.all(10) ,
-      //       alignment: Alignment.bottomCenter,
-      //       decoration: BoxDecoration(
-      //         borderRadius: BorderRadius.circular(20.0),
-      //         gradient: LinearGradient(
-      //           begin: Alignment.topRight,
-      //           end: Alignment.topLeft,
-      //           colors: <Color>[
-      //             Colors.blue[50],
-      //             Colors.blue[100],
-      //             Colors.blue[200],
-      //             Colors.blue[300],
-      //             Colors.blue[400],
-      //             Colors.blue[500],
-      //
-      //           ],
-      //         ),
-      //       ),
-      //       child: Center(
-      //         child: Text(
-      //           "Foreground Text",
-      //           style: TextStyle(color: Colors.white, fontSize: 20.0),
-      //         ),
-      //       ),
-      //     );
-      //   }),
-      // ),
-
-      // Expanded(
-
-      //   ),
     );
   }
 }
