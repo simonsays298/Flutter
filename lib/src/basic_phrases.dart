@@ -40,7 +40,8 @@ class _HomepageState extends State<Homepage> {
     'Really',
     'Hontouni'
   ];
-  List<String> translate = <String>['',
+  List<String> translate = <String>[
+    '',
     'かわいい',
     '',
     'こんにちは',
@@ -64,7 +65,8 @@ class _HomepageState extends State<Homepage> {
       ),
       body: GridView.builder(
         shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
@@ -102,12 +104,14 @@ class _HomepageState extends State<Homepage> {
                         padding: const EdgeInsets.all(30.0),
                         child: Text(
                           audio[index],
-                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Text(
                         translate[index],
-                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
