@@ -1,6 +1,7 @@
+import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
-import 'dart:async';
+
 import 'package:filter_list/filter_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,20 +30,20 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   final TextEditingController controller = TextEditingController();
-  Map<String, dynamic> map = Map<String, dynamic>();
-  List<String> titleMovies = List<String>();
-  List<String> photosMovies = List<String>();
-  int page_number = 1;
+  Map<String, dynamic> map = <String, dynamic>{};
+  List<String> titleMovies = <String>[];
+  List<String> photosMovies = <String>[];
+  int pageNumber = 1;
   bool erased = false;
-  ScrollController _scrollController = new ScrollController();
-  bool new_page = false;
-  LinkedHashSet<String> set1 = new LinkedHashSet<String>();
-  LinkedHashSet<String> set2 = new LinkedHashSet<String>();
+  final ScrollController _scrollController = ScrollController();
+  bool newPage = false;
+  LinkedHashSet<String> set1 = LinkedHashSet<String>();
+  LinkedHashSet<String> set2 = LinkedHashSet<String>();
 
   Future<void> getMovies(List<String> list) async {
     // LinkedHashSet<String> set1 = new LinkedHashSet<String>();
     // LinkedHashSet<String> set2 = new LinkedHashSet<String>();
-    if (new_page == false) {
+    if (newPage == false) {
       titleMovies.clear();
       photosMovies.clear();
       set1.clear();
@@ -53,60 +54,60 @@ class _HomepageState extends State<Homepage> {
       final Response resp = await get(
           'https://yts.mx/api/v2/list_movies.json?genre=' +
               list[i] +
-              '&page=$page_number');
+              '&page=$pageNumber');
 
       setState(() {
         map = jsonDecode(resp.body);
-        // page_number++;
-        List<dynamic> moviesList = map["data"]["movies"];
+        // pageNumber++;
+        final List<dynamic> moviesList = map['data']['movies'];
         for (int j = 0; j < moviesList.length; j++) {
-          set1.add(map["data"]["movies"][j]["title"]);
-          set2.add(map["data"]["movies"][j]["medium_cover_image"]);
+          set1.add(map['data']['movies'][j]['title']);
+          set2.add(map['data']['movies'][j]['medium_cover_image']);
         }
         titleMovies = set1.toList();
         photosMovies = set2.toList();
       });
     }
-    page_number++;
+    pageNumber++;
 
-    print(map["data"]["movies"][0]["medium_cover_image"]);
+    print(map['data']['movies'][0]['medium_cover_image']);
   }
 
-  List<String> countList = [
-    "all",
-    "Action",
-    "Adventure",
-    "Animation",
-    "Biography",
-    "Comedy",
-    "Crime",
-    "Documentary",
-    "Drama",
-    "Family",
-    "Fantasy",
-    "History",
-    "Horror",
-    "Musical",
-    "Mystery",
-    "Thriller",
-    "Reality-Tv",
-    "Romance",
-    "Sci-Fi",
-    "War",
-    "Western",
+  List<String> countList = <String>[
+    'all',
+    'Action',
+    'Adventure',
+    'Animation',
+    'Biography',
+    'Comedy',
+    'Crime',
+    'Documentary',
+    'Drama',
+    'Family',
+    'Fantasy',
+    'History',
+    'Horror',
+    'Musical',
+    'Mystery',
+    'Thriller',
+    'Reality-Tv',
+    'Romance',
+    'Sci-Fi',
+    'War',
+    'Western',
   ];
-  List<String> selectedCountList = [];
+  List<String> selectedCountList = <String>[];
 
-  List<String> resList = ['all'];
+  List<String> resList = <String>['all'];
 
   @override
   void initState() {
-    getMovies(['all']);
+    getMovies(<String>['all']);
     setState(() {
       _scrollController.addListener(() {
         if (_scrollController.position.pixels >=
             _scrollController.position.maxScrollExtent - 100) {
-          new_page = true;
+          newPage = true;
           getMovies(resList);
         }
       });
@@ -117,24 +118,24 @@ class _HomepageState extends State<Homepage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _scrollController.dispose();
     super.dispose();
   }
 
-  void _openFilterDialog() async {
+  Future<void> _openFilterDialog() async {
     erased = false;
     await FilterListDialog.display(context,
         allTextList: countList,
         height: 480,
         borderRadius: 20,
-        headlineText: "Choose your genre",
-        searchFieldHintText: "Search Here", onApplyButtonClick: (list) {
+        headlineText: 'Choose your genre',
+        searchFieldHintText: 'Search Here',
+        onApplyButtonClick: (List<String> list) {
       resList = list;
-      page_number = 1;
+      pageNumber = 1;
       if (list != null) {
         setState(() {
-          new_page = false;
+          newPage = false;
           getMovies(list);
         });
         Navigator.pop(context);
@@ -147,9 +148,9 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        actions: [
+        actions: <Widget>[
           IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.filter_alt_outlined,
                 color: Colors.white,
               ),
@@ -157,7 +158,7 @@ class _HomepageState extends State<Homepage> {
         ],
       ),
       body: Column(
-        children: [
+        children: <Widget>[
           Expanded(
             flex: 1,
             child: ListView.builder(
@@ -198,12 +199,12 @@ class _HomepageState extends State<Homepage> {
                 // );
                 print(erased);
                 return erased
-                    ? SizedBox(
+                    ? const SizedBox(
                         height: 0,
                         width: 0,
                       )
                     : Chip(
-                        deleteIcon: Icon(
+                        deleteIcon: const Icon(
                           Icons.remove_circle_outline,
                           size: 15,
                           color: Colors.redAccent,
