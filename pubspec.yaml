@@ -13,6 +13,7 @@ dependencies:
   http: ^0.12.2
   powers: ^0.1.0
   audioplayers: ^0.17.0
+  filter_list: ^0.0.5
 
 
 dev_dependencies:
