@@ -24,9 +24,9 @@ import 'package:http/http.dart';
 // }
 Future<void> main() async {
   final Response resp = await get('https://yts.mx/api/v2/list_movies.json');
-  Map<String, dynamic> map = jsonDecode(resp.body);
+  final Map<String, dynamic> map = jsonDecode(resp.body);
   for (int i = 0; i < 20; i++) {
-    print(map["data"]["movies"][i]["title"]);
+    print(map['data']['movies'][i]['title']);
   }
 
   // final List<String> items = data.split('<a href="/img/flags');

@@ -51,10 +51,7 @@ class _HomepageState extends State<Homepage> {
     }
 
     for (int i = 0; i < list.length; i++) {
-      final Response resp = await get(
-          'https://yts.mx/api/v2/list_movies.json?genre=' +
-              list[i] +
-              '&page=$pageNumber');
+      final Response resp = await get('https://yts.mx/api/v2/list_movies.json?genre=' + list[i] + '&page=$pageNumber');
 
       setState(() {
         map = jsonDecode(resp.body);
@@ -105,8 +102,7 @@ class _HomepageState extends State<Homepage> {
     getMovies(<String>['all']);
     setState(() {
       _scrollController.addListener(() {
-        if (_scrollController.position.pixels >=
-            _scrollController.position.maxScrollExtent - 100) {
+        if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 100) {
           newPage = true;
           getMovies(resList);
         }
@@ -129,8 +125,7 @@ class _HomepageState extends State<Homepage> {
         height: 480,
         borderRadius: 20,
         headlineText: 'Choose your genre',
-        searchFieldHintText: 'Search Here',
-        onApplyButtonClick: (List<String> list) {
+        searchFieldHintText: 'Search Here', onApplyButtonClick: (List<String> list) {
       resList = list;
       pageNumber = 1;
       if (list != null) {

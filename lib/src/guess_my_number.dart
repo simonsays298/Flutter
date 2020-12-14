@@ -63,8 +63,7 @@ class _HomepageState extends State<Homepage> {
                 child: Text(
                   'You tried ' + _value + '\n' + _msg3,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 visible: show,
               ),
@@ -88,14 +87,12 @@ class _HomepageState extends State<Homepage> {
               child: Card(
                 child: Column(
                   children: <Widget>[
-                    const Text('Try a number !!!',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    const Text('Try a number !!!', style: TextStyle(fontWeight: FontWeight.bold)),
                     TextField(
                       keyboardType: TextInputType.number,
                       // ignore: always_specify_types
                       inputFormatters: [
-                        FilteringTextInputFormatter.allow(
-                            RegExp(r'\d+([\.]\d+)?')),
+                        FilteringTextInputFormatter.allow(RegExp(r'\d+([\.]\d+)?')),
                       ],
                       controller: myController,
                       onChanged: (String value) {
@@ -126,10 +123,8 @@ class _HomepageState extends State<Homepage> {
                                     builder: (BuildContext context) {
                                       return AlertDialog(
                                         shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(20.0))),
-                                        backgroundColor: const Color.fromRGBO(
-                                            240, 255, 255, 0.8),
+                                            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                                        backgroundColor: const Color.fromRGBO(240, 255, 255, 0.8),
                                         title: const Text(
                                           'You guessed right!',
                                           textAlign: TextAlign.center,

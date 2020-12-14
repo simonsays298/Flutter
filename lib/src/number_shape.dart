@@ -24,8 +24,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  final String _msg =
-      'Please input a number to see if it is SQUARE or TRIANGULAR';
+  final String _msg = 'Please input a number to see if it is SQUARE or TRIANGULAR';
   String _value = '';
   final String _cube = 'is TRIANGLE';
   final String _square = 'is SQUARE';
@@ -60,8 +59,7 @@ class _HomepageState extends State<Homepage> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 _msg,
-                style:
-                    const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -118,11 +116,9 @@ class _HomepageState extends State<Homepage> {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0))),
-                              backgroundColor:
-                                  const Color.fromRGBO(204, 255, 255, 0.8),
+                              shape:
+                                  const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                              backgroundColor: const Color.fromRGBO(204, 255, 255, 0.8),
                               title: Text(
                                 _value,
                                 textAlign: TextAlign.center,
